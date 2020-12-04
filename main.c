@@ -6,7 +6,7 @@
 /*   By: fsugimot <fsugimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/03 21:28:00 by fsugimot          #+#    #+#             */
-/*   Updated: 2020/12/04 15:00:29 by fsugimot         ###   ########.fr       */
+/*   Updated: 2020/12/04 15:34:28 by fsugimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,8 @@ void	set_leaf(t_file *root, char *filename, long long int ctime)
 		set_leaf(root->left, filename, ctime);
 	else if (root->time > ctime)
 		root->left = init_t_file(root->left, filename, ctime);
+	else
+		root->right = init_t_file(root->right,filename, ctime);
 }
 
 void	output_filename(DIR *dir)
@@ -126,7 +128,8 @@ void	output_filename(DIR *dir)
 			break;
 		if (!root)
 			root = init_t_file(root, dirent->d_name, st.st_ctime);
-		set_leaf(root, dirent->d_name, st.st_ctime);	
+		else
+			set_leaf(root, dirent->d_name, st.st_ctime);	
 		free(filename);
 	}
 	traverse_tree(root);
