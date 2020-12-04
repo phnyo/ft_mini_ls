@@ -6,13 +6,13 @@
 /*   By: fsugimot <fsugimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/04 15:48:23 by fsugimot          #+#    #+#             */
-/*   Updated: 2020/12/04 15:48:53 by fsugimot         ###   ########.fr       */
+/*   Updated: 2020/12/04 16:14:24 by fsugimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_mini_ls.h"
 
-void	set_t_file(t_file *file, char *filename, unsigned long long ctime)
+void	set_t_file(t_file *file, char *filename, struct timespec ctime)
 {
 	file->filename = ft_strdup(filename);
 	file->time = ctime;
@@ -20,7 +20,7 @@ void	set_t_file(t_file *file, char *filename, unsigned long long ctime)
 	file->right = NULL;
 }
 
-t_file	*init_t_file(t_file *file, char *filename, unsigned long long ctime)
+t_file	*init_t_file(t_file *file, char *filename, struct timespec ctime)
 {
 	file = malloc(sizeof(t_file));
 	if (file == NULL)
@@ -41,17 +41,21 @@ void	traverse_tree(t_file *root)
 	free(root);
 }
 
-void	set_leaf(t_file *root, char *filename, long long int ctime)
+void	set_leaf(t_file *root, char *filename, struct timespec ctime)
 {
-	if (root->time < ctime && root->right)
+	if ((root->time.tv_sec < ctime.tv_sec || \
+		(root->time.tv_sec == ctime.tv_sec && root->time.tv_nsec < ctime.tv_nsec)) \
+		&& root->right)
 		set_leaf(root->right, filename, ctime);
-	else if (root->time < ctime)
+	else if (root->time.tv_sec < ctime.tv_sec || \
+		(root->time.tv_sec == ctime.tv_sec && root->time.tv_nsec < ctime.tv_nsec))
 		root->right = init_t_file(root->right, filename, ctime);
-	else if (root->time > ctime && root->left)
+	else if ((root->time.tv_sec > ctime.tv_sec || \
+		(root->time.tv_sec == ctime.tv_sec && root->time.tv_nsec > ctime.tv_nsec)) \
+		&& root->left)
 		set_leaf(root->left, filename, ctime);
-	else if (root->time > ctime)
+	else if (root->time.tv_sec > ctime.tv_sec || \
+		(root->time.tv_sec == ctime.tv_sec && root->time.tv_nsec > ctime.tv_nsec))
 		root->left = init_t_file(root->left, filename, ctime);
-	else
-		root->right = init_t_file(root->right, filename, ctime);
 }
 

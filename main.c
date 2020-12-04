@@ -6,7 +6,7 @@
 /*   By: fsugimot <fsugimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/03 21:28:00 by fsugimot          #+#    #+#             */
-/*   Updated: 2020/12/04 15:49:03 by fsugimot         ###   ########.fr       */
+/*   Updated: 2020/12/04 16:04:12 by fsugimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@ void	output_filename(DIR *dir)
 		if (filename == NULL)
 			break ;
 		if (!root)
-			root = init_t_file(root, dirent->d_name, st.st_ctime);
+			root = init_t_file(root, dirent->d_name, st.st_ctim);
 		else
-			set_leaf(root, dirent->d_name, st.st_ctime);
+			set_leaf(root, dirent->d_name, st.st_ctim);
 		free(filename);
 	}
 	traverse_tree(root);
