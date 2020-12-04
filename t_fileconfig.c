@@ -6,7 +6,7 @@
 /*   By: fsugimot <fsugimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/04 15:48:23 by fsugimot          #+#    #+#             */
-/*   Updated: 2020/12/04 16:22:31 by fsugimot         ###   ########.fr       */
+/*   Updated: 2020/12/04 16:23:31 by fsugimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,4 +62,3 @@ void	set_leaf(t_file *root, char *filename, struct timespec ctime)
 		root->time.tv_nsec > ctime.tv_nsec))
 		root->left = init_t_file(root->left, filename, ctime);
 }
-
