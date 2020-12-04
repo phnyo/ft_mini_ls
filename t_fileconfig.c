@@ -6,7 +6,7 @@
 /*   By: fsugimot <fsugimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/04 15:48:23 by fsugimot          #+#    #+#             */
-/*   Updated: 2020/12/04 16:14:24 by fsugimot         ###   ########.fr       */
+/*   Updated: 2020/12/04 16:22:31 by fsugimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,18 +44,22 @@ void	traverse_tree(t_file *root)
 void	set_leaf(t_file *root, char *filename, struct timespec ctime)
 {
 	if ((root->time.tv_sec < ctime.tv_sec || \
-		(root->time.tv_sec == ctime.tv_sec && root->time.tv_nsec < ctime.tv_nsec)) \
+		(root->time.tv_sec == ctime.tv_sec && \
+		root->time.tv_nsec < ctime.tv_nsec)) \
 		&& root->right)
 		set_leaf(root->right, filename, ctime);
 	else if (root->time.tv_sec < ctime.tv_sec || \
-		(root->time.tv_sec == ctime.tv_sec && root->time.tv_nsec < ctime.tv_nsec))
+		(root->time.tv_sec == ctime.tv_sec && \
+		root->time.tv_nsec < ctime.tv_nsec))
 		root->right = init_t_file(root->right, filename, ctime);
 	else if ((root->time.tv_sec > ctime.tv_sec || \
-		(root->time.tv_sec == ctime.tv_sec && root->time.tv_nsec > ctime.tv_nsec)) \
+		(root->time.tv_sec == ctime.tv_sec && \
+		root->time.tv_nsec > ctime.tv_nsec)) \
 		&& root->left)
 		set_leaf(root->left, filename, ctime);
 	else if (root->time.tv_sec > ctime.tv_sec || \
-		(root->time.tv_sec == ctime.tv_sec && root->time.tv_nsec > ctime.tv_nsec))
+		(root->time.tv_sec == ctime.tv_sec && \
+		root->time.tv_nsec > ctime.tv_nsec))
 		root->left = init_t_file(root->left, filename, ctime);
 }
 

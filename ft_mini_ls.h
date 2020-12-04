@@ -6,7 +6,7 @@
 /*   By: fsugimot <fsugimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/03 22:11:17 by fsugimot          #+#    #+#             */
-/*   Updated: 2020/12/04 16:10:29 by fsugimot         ###   ########.fr       */
+/*   Updated: 2020/12/04 16:22:12 by fsugimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,15 @@ typedef struct		s_file
 	struct s_file	*right;
 }					t_file;
 
-int		ft_strlen(char *str);
-char	*ft_strdup(char *str);
-char	*ft_strconcat(char *f, char *s);
-void	set_t_file(t_file *file, char *filename, struct timespec ctime);
-t_file	*init_t_file(t_file *file, char *filename, struct timespec ctime);
-void	traverse_tree(t_file *root);
-void	set_leaf(t_file *root, char *filename, struct timespec ctime);
+int					ft_strlen(char *str);
+char				*ft_strdup(char *str);
+char				*ft_strconcat(char *f, char *s);
+void				set_t_file(t_file *file, char *filename, \
+					struct timespec ctime);
+t_file				*init_t_file(t_file *file, char *filename, \
+					struct timespec ctime);
+void				traverse_tree(t_file *root);
+void				set_leaf(t_file *root, char *filename, \
+					struct timespec ctime);
 
 #endif
