@@ -6,7 +6,7 @@
 /*   By: fsugimot <fsugimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/03 22:11:17 by fsugimot          #+#    #+#             */
-/*   Updated: 2020/12/04 14:39:45 by fsugimot         ###   ########.fr       */
+/*   Updated: 2020/12/04 15:01:59 by fsugimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@
 
 typedef struct s_file
 {
-   char			      	*filename;
-   unsigned long long   time; 
-   struct s_file     	*left;
-   struct s_file     	*right;
-}				         	t_file;
+   char				*filename;
+   long long		time; 
+   struct s_file	*left;
+   struct s_file  	*right;
+}					t_file;
 
 #endif

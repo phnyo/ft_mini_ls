@@ -6,7 +6,7 @@
 /*   By: fsugimot <fsugimot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/03 21:28:00 by fsugimot          #+#    #+#             */
-/*   Updated: 2020/12/04 14:56:19 by fsugimot         ###   ########.fr       */
+/*   Updated: 2020/12/04 15:00:29 by fsugimot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,7 +144,7 @@ void	ft_mini_ls()
 
 int		main(int argc, char **argv)
 {
-	if (argc != 1)
+	if (argc != 1 && argv[0])
 		write(2, "Do not execute with commandline arguments.", 42);
 	ft_mini_ls();
 }
